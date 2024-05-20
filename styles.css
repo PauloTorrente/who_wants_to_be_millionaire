@@ -1,7 +1,5 @@
-/* style.css */
-
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Arial', sans-serif;
   background-color: #f0f0f0;
   margin: 0;
   padding: 0;
@@ -14,32 +12,33 @@ body {
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
 }
 
 .question {
-  font-size: 20px;
+  font-size: 24px;
   font-weight: bold;
   margin-bottom: 20px;
 }
 
 .options {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
 }
 
 .button {
   padding: 10px 20px;
-  margin-bottom: 10px;
-  background-color: #4CAF50;
+  background-color: #007BFF;
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 .button:hover {
-  background-color: #45a049;
+  background-color: #0056b3;
 }
 
 .correct {
@@ -48,4 +47,40 @@ body {
 
 .incorrect {
   background-color: #f44336 !important;
+}
+
+.selected {
+  background-color: yellow;
+}
+
+.progression {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.phase {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #ccc;
+}
+
+.phase.active {
+  background-color: yellow;
+}
+
+.phase.completed {
+  background-color: green;
+}
+
+.phase.failed {
+  background-color: red;
+}
+
+#game-over {
+  font-size: 24px;
+  font-weight: bold;
+  color: red;
+  margin-top: 20px;
 }
