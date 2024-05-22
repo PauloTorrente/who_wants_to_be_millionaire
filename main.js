@@ -1,14 +1,14 @@
 document.addEventListener('DOMContentLoaded', function() {
   const root = document.getElementById('root'); // Elemento raíz donde se mostrará el juego
   const maxQuestions = 15; // Número máximo de preguntas en el juego
-  const categories = ['javascript', 'html', 'css']; // Categorías de preguntas disponibles
+  const categories = ['javascript', 'html', 'css',]; // Categorías de preguntas disponibles
   let questionsAsked = 0; // Contador de preguntas realizadas
   let currentQuestionData = null; // Datos de la pregunta actual
   let selectedOption = null; // Opción seleccionada por el jugador
 
   // Función principal para iniciar el juego
   function startGame() {
-    root.innerHTML = '<div id="progress"></div><div id="question-container"></div>';
+    root.innerHTML = '<div id="progress" style="display: flex;justify-content: space-between;"></div><div id="question-container"></div>';
     questionsAsked = 0; // Reiniciar el contador de preguntas
     selectedOption = null; // Reiniciar la opción seleccionada
     updateProgress(); // Actualizar la barra de progreso
@@ -27,7 +27,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const category = getRandomCategory(); // Obtener una categoría aleatoria
 
     const apiUrl = `https://quiz-api-ofkh.onrender.com/questions/random?level=${level}&category=${category}`;
-  
 
     fetch(apiUrl)
       .then(response => response.json()) // Convertir la respuesta a JSON
@@ -104,12 +103,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const correctAnswerKey = currentQuestionData.correctAnswer; // Clave de la respuesta correcta
     const correctAnswerText = currentQuestionData.answers[correctAnswerKey]; // Texto de la respuesta correcta
     const options = document.querySelectorAll('.button'); // Seleccionar todos los botones de opciones
-    
+
     // Deshabilitar todas las opciones y marcar correctas/incorrectas
     options.forEach(option => {
       option.disabled = true; // Deshabilitar opción
       console.log('Correct Answer:', correctAnswerText); // Log de la respuesta correcta
-      
+
       if (option.textContent === correctAnswerText) {
         option.classList.add('correct'); // Marcar opción correcta
       } else if (option.textContent === selectedOptionText) {
@@ -127,21 +126,21 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
- // Función para actualizar el progreso del jugador
-function updateProgress() {
-  const progress = document.getElementById('progress'); // Contenedor de la barra de progreso
-  progress.innerHTML = ''; // Limpiar el contenedor de progreso
-  for (let i = 0; i < maxQuestions; i++) {
-    const phase = document.createElement('div'); // Crear elemento para cada fase de progreso
-    phase.className = 'phase';
-    if (i < questionsAsked) {
-      phase.classList.add('completed'); // Marcar como completada
-    } else if (i === questionsAsked) {
-      phase.classList.add('active'); // Marcar como activa
+  // Función para actualizar el progreso del jugador
+  function updateProgress() {
+    const progress = document.getElementById('progress'); // Contenedor de la barra de progreso
+    progress.innerHTML = ''; // Limpiar el contenedor de progreso
+    for (let i = 0; i < maxQuestions; i++) {
+      const phase = document.createElement('div'); // Crear elemento para cada fase de progreso
+      phase.className = 'phase';
+      if (i < questionsAsked) {
+        phase.classList.add('completed'); // Marcar como completada
+      } else if (i === questionsAsked) {
+        phase.classList.add('active'); // Marcar como activa
+      }
+      progress.appendChild(phase); // Añadir la fase al contenedor de progreso
     }
-    progress.appendChild(phase); // Añadir la fase al contenedor de progreso
   }
-}
 
   // Función para mostrar Game Over y reiniciar el juego
   function displayGameOver(message) {
