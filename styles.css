@@ -6,7 +6,6 @@ body {
 }
 
 #root {
-  max-width: 600px;
   margin: 20px auto;
   padding: 20px;
   background-color: #fff;
@@ -14,7 +13,7 @@ body {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   text-align: center;
   position: relative;
-  height: 100px; 
+  height: 100vh; 
   background-size: 100% 100%; 
   }
 
@@ -24,7 +23,7 @@ body {
   left: 0;
   width: 0; 
   height: 100%; 
-  background: linear-gradient(to right, #e6e6e6 0%, red 100%); 
+  background: linear-gradient(to right, #e6e6e6 0%, rgb(0, 17, 255) 100%); 
   transition: width 0.3s ease;
   }
 
@@ -42,7 +41,7 @@ body {
 
 .button {
   padding: 10px 20px;
-  background-color: #e20909;
+  background-color: #1f09e2;
   color: white;
   border: none;
   border-radius: 5px;
@@ -64,6 +63,11 @@ body {
 
 .selected {
   background-color: yellow;
+}
+
+.progress {
+  display: flex; 
+  justify-content: space-between;
 }
 
 .progression {
