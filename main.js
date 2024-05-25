@@ -89,13 +89,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Función para manejar el clic en una opción de respuesta
   function handleOptionClick(button, option) {
-    // Deseleccionar la opción previamente seleccionada
-    if (selectedOption) {
-      selectedOption.classList.remove('selected');
+    // Si la opción ya está seleccionada (indicado por la clase 'selected')
+    if (button.classList.contains('selected')) {
+      // Validar la respuesta seleccionada
+      validateAnswer(option);
+    } else {
+      // Deseleccionar la opción previamente seleccionada
+      if (selectedOption) {
+        selectedOption.classList.remove('selected');
+      }
+      selectedOption = button; // Establecer la opción seleccionada
+      button.classList.add('selected'); // Marcar la opción como seleccionada
     }
-    selectedOption = button; // Establecer la opción seleccionada
-    button.classList.add('selected'); // Marcar la opción como seleccionada
-    validateAnswer(option); // Validar la respuesta seleccionada
   }
 
   // Función para validar la respuesta del jugador
@@ -122,7 +127,7 @@ document.addEventListener('DOMContentLoaded', function() {
       updateProgress(); // Actualizar la barra de progreso
       setTimeout(fetchQuestion, 3000); // Obtener la siguiente pregunta después de 3 segundos
     } else {
-      displayGameOver('Incorrect answer! Game Over.'); // Mostrar mensaje de fin del juego
+      displayGameOver('Has fracasado.'); // Mostrar mensaje de fin del juego
     }
   }
 
@@ -138,7 +143,19 @@ document.addEventListener('DOMContentLoaded', function() {
       } else if (i === questionsAsked) {
         phase.classList.add('active'); // Marcar como activa
       }
-      progress.appendChild(phase); // Añadir la fase al contenedor de progreso
+      progress.appendChild(phase); // Añadir
+      phase.addEventListener('click', function() {
+        handleProgressClick(i); // Manejar clic en la fase de progreso
+      });
+    }
+  }
+
+  // Función para manejar el clic en una fase de progreso
+  function handleProgressClick(phaseIndex) {
+    if (phaseIndex < questionsAsked) {
+      questionsAsked = phaseIndex; // Retroceder al clickear en una fase completada
+      updateProgress(); // Actualizar el progreso
+      fetchQuestion(); // Obtener la pregunta correspondiente
     }
   }
 

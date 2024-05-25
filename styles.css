@@ -15,7 +15,7 @@ body {
   position: relative;
   height: 100vh; 
   background-size: 100% 100%; 
-  }
+}
 
 #root::before {
   content: "";
@@ -25,7 +25,7 @@ body {
   height: 100%; 
   background: linear-gradient(to right, #e6e6e6 0%, rgb(0, 17, 255) 100%); 
   transition: width 0.3s ease;
-  }
+}
 
 .question {
   font-size: 24px;
@@ -50,7 +50,7 @@ body {
 }
 
 .button:hover {
-  background-color: #b30000;
+  background-color: #ffee00;
 }
 
 .correct {
