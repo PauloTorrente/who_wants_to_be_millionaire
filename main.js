@@ -32,12 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
       .then(response => response.json()) // Convertir la respuesta a JSON
       .then(data => {
         currentQuestionData = data; // Almacenar los datos de la pregunta actual
-        console.log('API Response:', data); // Log de la respuesta completa de la API
-        console.log('Correct Answer:', data.correctAnswer); // Log de la respuesta correcta
         displayQuestion(data); // Mostrar la pregunta en pantalla
-      })
-      .catch(error => {
-        console.error('Error fetching question:', error); // Log de errores en la solicitud
       });
   }
 
@@ -112,7 +107,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Deshabilitar todas las opciones y marcar correctas/incorrectas
     options.forEach(option => {
       option.disabled = true; // Deshabilitar opción
-      console.log('Correct Answer:', correctAnswerText); // Log de la respuesta correcta
 
       if (option.textContent === correctAnswerText) {
         option.classList.add('correct'); // Marcar opción correcta
